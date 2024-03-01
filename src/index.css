@@ -1,0 +1,158 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width:767px) {
+  html{
+    font-size:13px ;
+  }
+}
+
+form .login{
+  width: fit-content;
+  display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    box-shadow: -2px 7px 20px #ddd;
+    padding: 30px 20px;
+    border-radius: 10px;
+}
+form .login label{
+  padding:.5em ;
+  font-size: .9rem;
+
+}
+form .login input   , .add_input{
+  border-radius: 4px;
+  transition: .3s;
+  border: 2px solid #dddddd;
+  padding: 10px 0 10px 14px;
+  width: 300px;
+
+}
+form .login input:focus {
+  outline: none;
+  border: 2px solid #6ea5f8;
+
+}
+form .login button{
+  margin-top: 10px;
+  color: #fff;
+  width: fit-content;
+  padding: 10px 20px;
+  align-self: center;
+  border: none;
+  cursor: pointer;
+  border-radius: 7px;
+  letter-spacing: 2px;
+  
+}
+form .login button[type="submit"]{
+  background-color:#327ff1 ;
+
+}
+form .login button[type="button"]{
+  background-color: rgb(29, 172, 0);
+
+}
+.error{
+  color: rgb(255, 46, 46);
+  font-size: .9rem;
+  font-weight: bold;
+  padding: 0;
+  margin: 5px 10px 0 10px; 
+}
+.products{
+  display: flex; 
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.products li{
+  box-shadow: 1px 5px 6px #0c0c0c9a ;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  padding:10px 10px;
+  list-style: none;
+  background-color: #3a3a3a;
+  margin: 10px 0;
+  min-width: 200px;
+  min-height: 300px;
+  color: #fffbc1;
+
+}
+.products p{
+  width: 10rem;
+}
+.products button{
+  width: 50px ;
+  border: 1px solid #0c0c0c;
+  background-color: #327ff1;
+  cursor:pointer;
+
+}
+
+.products .remove{
+  width: 50px ;
+  border: 1px solid #0c0c0c;
+  background-color: rgb(255, 0, 0);
+  cursor:pointer;
+}
+
+
+.Edit-inp{
+  width: 100%;
+  padding: .5rem;
+  font-size:.8rem;
+  background-color: #7c7c7c;
+  color: #fff;
+  word-spacing: .25px;
+  border: none;
+  outline: none !important;
+  margin:  0 0 .5rem 0;
+  border-radius: 4px;
+}
+.css-j204z7-MuiForm .loginControlLabel-root .MuiForm .loginControlLabel-label{
+  width: max-content;
+}
+::-webkit-scrollbar{
+  width: .2rem;
+}
+::-webkit-scrollbar-track{
+  background-color: grey;
+}
+::-webkit-scrollbar-thumb{
+  background-color: rgb(255, 0, 81);
+border-radius: .5rem;
+}
+
+html{
+  scroll-behavior: smooth;
+}
