@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  ButtonBase,
   Collapse,
   CssBaseline,
   Divider,
@@ -24,7 +23,6 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
 import { useAuth } from "../Contexts/Authenticated";
 import { useCart } from "../Contexts/CartContext";
-import { StyledCounterBtn, StyledCounterText } from "../SingleProduct/style";
 import { createRef } from "react";
 import { PATHS } from "../PATHS";
 import CounterOfThequantitiy from "../CounterOfThequantitiy";
@@ -32,12 +30,11 @@ import { grey, pink } from "@mui/material/colors";
 import { StyledDisc } from "../Products/Style";
 import axios from "axios";
 import {
-  ArrowBack,
+
   ArrowBackIosNew,
-  ArrowBackIosNewTwoTone,
-  ArrowBackOutlined,
+
   MenuOutlined,
-  PatternTwoTone,
+
 } from "@mui/icons-material";
 
 const Header = () => {
@@ -68,13 +65,12 @@ const Header = () => {
 
   const [OpenCart, setOpenCart] = useState(false);
   const [search, setSearch] = useState(false);
-  const { logout, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
 
-  const isMd = useMediaQuery((theme) => theme.breakpoints.down("lg"));
   const isSm = useMediaQuery((theme) => theme.breakpoints.down("md"));
 
   const counterRef = useRef();
-  const [counterState, setCounterState] = useState(counterRef);
+  const [, setCounterState] = useState(counterRef);
   useEffect(() => {
     setCounterState(counterRef.current);
   }, []);

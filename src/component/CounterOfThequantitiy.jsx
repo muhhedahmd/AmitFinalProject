@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { StyledCounterBtn, StyledCounterText } from "./SingleProduct/style";
-import { Button, ListItem, Typography } from "@mui/material";
+import { Button, ListItem } from "@mui/material";
 import { useCart } from "./Contexts/CartContext";
 import { pink } from "@mui/material/colors";
 

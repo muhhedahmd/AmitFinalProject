@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import PopupState, { bindToggle, bindPopper } from "material-ui-popup-state";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 import {
   Box,
@@ -10,14 +9,12 @@ import {
   Collapse,
   Divider,
   Drawer,
-  Fade,
+
   FormControlLabel,
   FormGroup,
   List,
   ListItem,
-  ListItemText,
-  Paper,
-  Popper,
+
   Rating,
   Skeleton,
   Typography,

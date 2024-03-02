@@ -2,16 +2,13 @@ import {
   Box,
   Button,
   Divider,
-  FormControl,
-  FormLabel,
-  Input,
   List,
   ListItem,
-  Radio,
+  
   Step,
   StepLabel,
   Stepper,
-  TextField,
+  
   Typography,
   useMediaQuery,
 } from "@mui/material";
@@ -23,14 +20,13 @@ import CartItem from "../component/CartItem";
 // import { BackHandOutlined, BackpackOutlined } from '@mui/icons-material'
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { pink } from "@mui/material/colors";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
 
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
-import Stack from "@mui/material/Stack";
 import Check from "@mui/icons-material/Check";
 import SettingsIcon from "@mui/icons-material/Settings";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
@@ -171,7 +167,7 @@ const Cart = () => {
   const theme = useTheme();
   const { ApplyDiscount, state, TotalPrice } = useCart();
 
-  const [steps, setSteps] = useState(["Total price", "dilverly", "payment"]);
+  const steps = ["Total price", "dilverly", "payment"]
   const isSm = useMediaQuery(theme.breakpoints.down("md"));
 
   const [stepsState, setStepsState] = useState(0);

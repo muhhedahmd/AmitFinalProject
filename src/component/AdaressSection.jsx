@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, FormLabel, List, TextField, Typography, colors } from '@mui/material'
+import { Box, Button, FormControl, FormLabel, TextField, Typography } from '@mui/material'
 import { pink } from '@mui/material/colors'
 import React, { useState } from 'react'
 
@@ -34,13 +34,14 @@ const AdaressSection = ({ setStepsState}) => {
     const handleSubmit= (e)=>{
 
 
-        Object.keys(data).map((e)=>{
-            if (data[e] ===  ""){
-                setErr((prev)=>{return {...prev , [e]:false}});
+        Object.keys(data).forEach((e)=>{
+                      if (data[e] ===  ""){
+              setErr((prev)=>{return {...prev , [e]:false}});
             }
             else {
-                setErr(true)
+              setErr(true)
             }
+          
         })
        if(Object.values(err).every(e=> e=== true)){
 
