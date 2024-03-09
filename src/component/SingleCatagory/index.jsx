@@ -43,7 +43,7 @@ const SingleCatagory = () => {
     
         <Box
         sx={{
-          padding:"3rem 2rem 3rem 2rem"
+          padding:"3rem 1rem"
         }}
         >
       <Typography
