@@ -67,12 +67,10 @@ const Header = () => {
   const isSm = useMediaQuery((theme) => theme.breakpoints.down("md"));
 
   const counterRef = useRef();
-  const [CounterState , setCounterState] = useState(null);
-
+  const [, setCounterState] = useState(counterRef);
   useEffect(() => {
-    // setCounterState(counterRef.current);
-  }, [counterRef.current]); 
-
+    setCounterState(counterRef.current);
+  }, []);
 
   const HandleExitSearch = () => {
     setSearch(false);
@@ -464,7 +462,6 @@ const Header = () => {
                                 drawercart={true}
                                 item={item}
                                 ref={counterRef}
-                                setCounterState={setCounterState}
                               />
                             </ListItem>
                           </div>
