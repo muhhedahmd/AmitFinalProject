@@ -124,7 +124,7 @@ const Login = () => {
           sx={{
             position: "relative",
             width: `${isMd ? "100%" : "calc(100vw - 32rem)"}`,
-            height: `${isMd ? "65vh" : "100vh" }`,
+            height: `${isMd ? "39h" : "100vh" }`,
             background: " #F1F3F6",
             color: "#fff",
           }}
