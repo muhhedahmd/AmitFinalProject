@@ -15,7 +15,7 @@ const CartItem = ({img  ,title  , price , id  , quantity, ...rest} ,props ) => {
     const theme = useTheme()
 
     const counterRef = useRef();
-    const [ setCounterState] = useState(counterRef);
+    const [, setCounterState] = useState(counterRef);
     useEffect(() => {
       setCounterState(counterRef.current);
     }, [setCounterState]);

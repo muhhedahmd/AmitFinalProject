@@ -1,13 +1,14 @@
-import { Box, Button, Divider, ListItem, Rating, Skeleton, Typography } from "@mui/material";
+import { Box, Button, ListItem, Rating, Skeleton, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "../Header";
 import {  StyledDisc, StyledProduct, StyledProductHolder } from "../Products/Style";
 // import { PATHS } from "../PATHS";
 import { grey, pink } from "@mui/material/colors";
 import { useCart } from "../Contexts/CartContext";
 import Footer from "../Footer";
+import { PATHS } from "../PATHS";
 
 const SingleCatagory = () => {
   const { id } = useParams();
@@ -42,7 +43,7 @@ const SingleCatagory = () => {
     
         <Box
         sx={{
-          padding:"3rem 6rem 3rem 6rem"
+          padding:"3rem 2rem 3rem 2rem"
         }}
         >
       <Typography
@@ -59,12 +60,13 @@ const SingleCatagory = () => {
       }}
       >
       {id}
+ 
 
       </Typography>
 
           <StyledProductHolder 
             sx={{
-              padding:"3rem"
+              padding:"3rem 2rem"
             }}
           >
               {Data.map((item, i) =>
@@ -75,8 +77,8 @@ const SingleCatagory = () => {
                    key={item.id}>
                     <ListItem
                       className="wrapper-img"
-                      width="100%"
                       sx={{
+                      width:"100%",
                         overflow:"hidden",
                         height: "18rem",
                       }}
@@ -95,8 +97,8 @@ const SingleCatagory = () => {
                         <img
                           style={{
                             objectFit: "cover",
-                            height: "8rem",
-                            width: "8rem",
+                            height: "10rem",
+                            width: "100%",
                             overflow: "initial",
                           }}
                           loading="lazy"
@@ -105,14 +107,7 @@ const SingleCatagory = () => {
                         />
                       )}
                     </ListItem>
-                    <Divider
-                      style={{
-                        width:"100%",
-                        background: "#dedede",
-                        margin: ".3rem 0 .4rem 0",
-                      }}
-                      component="div"
-                    />
+                   
                     <Box 
                     sx={{
                       display:"flex",
@@ -174,7 +169,15 @@ const SingleCatagory = () => {
                             color="text.secondary"
                             loading="lazy"
                           >
+                    <Link 
+                    style={{
+                      color:"inherit",
+                      textDecoration:"none",
+                    }}
+                    to={`${PATHS.SingleProduct}/${item.id}`}>
                             {item.title}
+
+                          </Link>
                           </StyledDisc>
                         )}
                       </ListItem>
@@ -261,6 +264,7 @@ const SingleCatagory = () => {
                        sx={{
                         bgcolor:pink[400],
                         color:grey[100],
+                        width:"100%",
                       margin:"0 !important",
                       ':hover':{
                         bgcolor:pink[300],

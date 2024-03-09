@@ -95,6 +95,7 @@ const SingleProduct = () => {
       >
         <Box
           sx={{
+            maxWidth: `${isSm ? "100%":"64%" }`,
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
@@ -622,8 +623,8 @@ const SingleProduct = () => {
               >
                 <ListItem
                   className="wrapper-img"
-                  width="100%"
                   sx={{
+                  width:"100%",
                     height: "18rem",
                   }}
                 >
@@ -641,8 +642,8 @@ const SingleProduct = () => {
                     <img
                       style={{
                         objectFit: "cover",
-                        height: "8rem",
-                        width: "8rem",
+                        height: "100%",
+                        width: "100%",
                         overflow: "initial",
                       }}
                       loading="lazy"

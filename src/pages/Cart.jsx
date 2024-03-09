@@ -4,11 +4,9 @@ import {
   Divider,
   List,
   ListItem,
-  
   Step,
   StepLabel,
   Stepper,
-  
   Typography,
   useMediaQuery,
 } from "@mui/material";
@@ -167,7 +165,7 @@ const Cart = () => {
   const theme = useTheme();
   const { ApplyDiscount, state, TotalPrice } = useCart();
 
-  const steps = ["Total price", "dilverly", "payment"]
+  const steps = ["Total price", "dilverly", "payment"];
   const isSm = useMediaQuery(theme.breakpoints.down("md"));
 
   const [stepsState, setStepsState] = useState(0);
@@ -178,28 +176,26 @@ const Cart = () => {
   return (
     <Box
       sx={{
-
         display: "flex",
         padding: " 2rem",
         maxWidth: "100%",
-        flexDirection: `${isSm ? 'column' : "row"}`,
-        '::-webkit-scrollbar':{
-  width: "5px",
-},
-'::-webkit-scrollbar-track':{
-  backgroundColor: "grey",
-},
+        flexDirection: `${isSm ? "column" : "row"}`,
+        "::-webkit-scrollbar": {
+          width: "5px",
+        },
+        "::-webkit-scrollbar-track": {
+          backgroundColor: "grey",
+        },
 
-"::-webkit-scrollbar-thumb":{
-  backgroundColor: "rgb(255, 0, 81)",
-borderRadius: ".5rem",
-}
-
+        "::-webkit-scrollbar-thumb": {
+          backgroundColor: "rgb(255, 0, 81)",
+          borderRadius: ".5rem",
+        },
       }}
     >
       <Box
         sx={{
-          width: `${isSm ? '100%' : "65%"}`,
+          width: `${isSm ? "100%" : "65%"}`,
         }}
       >
         <Box
@@ -207,7 +203,7 @@ borderRadius: ".5rem",
             display: "flex",
             justifyContent: "flex-end",
             alignItems: "flex-start",
-            flexDirection: 'row-reverse',
+            flexDirection: "row-reverse",
           }}
         >
           <Typography
@@ -251,22 +247,22 @@ borderRadius: ".5rem",
             maxHeight: "30rem",
             overflowY: "auto",
             padding: "1rem",
-            // width:"fit-content"
           }}
         >
           {state?.cartItems?.map((item) => {
             return (
               <Box>
                 <CartItem {...item} item={item} />
-                {isSm ? "" : 
+                {isSm ? (
+                  ""
+                ) : (
                   <Divider
-                  sx={{
-                    width: "100%",
-                  }}
-                />
-
-                }
-                              </Box>
+                    sx={{
+                      width: "100%",
+                    }}
+                  />
+                )}
+              </Box>
             );
           })}
         </Box>
@@ -311,19 +307,16 @@ borderRadius: ".5rem",
 
       <Box
         sx={{
-          width: `${isSm ? '100%' : "35%"}`,
-    
-          borderLeft: `${isSm ? "0":"1px solid #2222"}`,
+          width: `${isSm ? "100%" : "35%"}`,
+
+          borderLeft: `${isSm ? "0" : "1px solid #2222"}`,
           height: " 90vh",
-          margin: `${isSm ? '0'  :"0 0 0 1rem" }`,
-          padding: `${isSm ? '0'  :"0 0 0 1rem" }`,
+          margin: `${isSm ? "0" : "0 0 0 1rem"}`,
+          padding: `${isSm ? "0" : "0 0 0 1rem"}`,
         }}
       >
         <List>
-          <ListItem
-          disableGutters
-          disablePadding
-          >
+          <ListItem disableGutters disablePadding>
             <Typography variant="h6" component={"p"}>
               {steps[stepsState] === undefined
                 ? "Purschase Done"
@@ -369,7 +362,7 @@ borderRadius: ".5rem",
                 Discount
               </Typography>
               <Typography variant="p" component={"p"}>
-                {state.discountCode ? "$10" : "0$"}
+                {state.discountCode ? "-$10" : "0$"}
               </Typography>
             </StyledListItemForPriceSummary>
 
@@ -414,7 +407,7 @@ borderRadius: ".5rem",
                 variant="h6"
                 component={"p"}
               >
-                ${TotalPrice + (state.discountCode ? 10 : 0) + 10}
+                ${TotalPrice + (state.discountCode ? 10 : 0) - 10}
               </Typography>
             </StyledListItemForPriceSummary>
 
@@ -466,40 +459,38 @@ borderRadius: ".5rem",
             </StyledListItemForPriceSummary>
           </List>
         ) : stepsState === 1 ? (
-
           <>
-          <AdaressSection  setStepsState={ setStepsState}  />
+            <AdaressSection setStepsState={setStepsState} />
 
-          <Button
-          fullWidth
-          sx={{
-            padding:".3rem .5rem"
-          }}
-          onClick={()=>setStepsState((prev)=>prev -1)}
-          >
-            Go Back
-          </Button>
+            <Button
+              fullWidth
+              sx={{
+                padding: ".3rem .5rem",
+              }}
+              onClick={() => setStepsState((prev) => prev - 1)}
+            >
+              Go Back
+            </Button>
           </>
-        ) :  stepsState === 2 ? (
-<>
+        ) : stepsState === 2 ? (
+          <>
+            <Payment
+              totalPrice={TotalPrice + (state.discountCode ? -10 : 0) + 10}
+            />
 
-          
-
-  <Payment 
-    totalPrice={TotalPrice + (state.discountCode ? -10 : 0) + 10}
-  />
-
-          <Button
-          fullWidth
-          sx={{
-            padding:".3rem .5rem"
-          }}
-          onClick={()=>setStepsState((prev)=> prev -1)}
-          >
-            Go Back
-          </Button>
-</>
-        ):""}
+            <Button
+              fullWidth
+              sx={{
+                padding: ".3rem .5rem",
+              }}
+              onClick={() => setStepsState((prev) => prev - 1)}
+            >
+              Go Back
+            </Button>
+          </>
+        ) : (
+          ""
+        )}
       </Box>
     </Box>
   );
