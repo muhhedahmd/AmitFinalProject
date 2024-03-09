@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { AppBar, List, Toolbar } from "@mui/material";
 import { createGlobalStyle } from "styled-components";
 
 
@@ -16,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
     animation-timing-function: ease-in-out;
   }
 
-  ${'' /* @keyframes opacity {
+ @keyframes opacity {
     0% {
     opacity: 0;
   }
@@ -29,7 +28,7 @@ export const GlobalStyle = createGlobalStyle`
   100% {
     opacity: 0;
   }
-  } */}
+  } 
 `;
 
 
@@ -40,7 +39,6 @@ export const FadeBox = styled.div(({opacity})=>{
         height: "100vh",
         position: "relative",
         width: "100vw",
-        overflow: "hidden",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

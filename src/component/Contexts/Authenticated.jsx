@@ -3,6 +3,7 @@ import{ createContext, useContext, useEffect, useState } from 'react';
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
+  const  [user, setUser] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated  , login, logout  }}>
+    <AuthContext.Provider value={{ isAuthenticated  , login, logout  , setUser , user }}>
       {children}
     </AuthContext.Provider>
   );

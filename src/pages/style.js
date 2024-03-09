@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { ListItem } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
-export const  StyledListItemForPriceSummary = styled(ListItem)(({})=>{
+export const  StyledListItemForPriceSummary = styled(ListItem)(()=>{
     return{
         
             display:"flex",
@@ -12,7 +12,7 @@ export const  StyledListItemForPriceSummary = styled(ListItem)(({})=>{
 
     }
 })
-export const  StyledDiscountInp = styled.input(({})=>{
+export const  StyledDiscountInp = styled.input(()=>{
     return{
         
         border:" 1px solid rgb(255 9 90)",

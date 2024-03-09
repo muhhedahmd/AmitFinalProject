@@ -1,9 +1,9 @@
-import { Avatar, Box, Button, Divider, List, ListItem, Typography, useMediaQuery } from '@mui/material'
+import { Avatar, List, ListItem, Typography, useMediaQuery } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import CounterOfThequantitiy from '../CounterOfThequantitiy'
-import { CloseFullscreen, CloseOutlined, DeleteOutline } from '@mui/icons-material'
+import {  DeleteOutline } from '@mui/icons-material'
 import { useCart } from '../Contexts/CartContext'
-import { grey, pink } from '@mui/material/colors'
+import { grey } from '@mui/material/colors'
 import { StyledDisc } from '../Products/Style'
 import { useTheme } from '@emotion/react'
 
@@ -11,14 +11,14 @@ import { useTheme } from '@emotion/react'
 const CartItem = ({img  ,title  , price , id  , quantity, ...rest} ,props ) => {
     // const {state} = useCart()
 
-    const {state , DeleteFromCart} = useCart()
+    const {DeleteFromCart} = useCart()
     const theme = useTheme()
 
     const counterRef = useRef();
-    const [counterState, setCounterState] = useState(counterRef);
+    const [ setCounterState] = useState(counterRef);
     useEffect(() => {
       setCounterState(counterRef.current);
-    }, []);
+    }, [setCounterState]);
   
     const isSm = useMediaQuery(theme.breakpoints.down("md"));
 

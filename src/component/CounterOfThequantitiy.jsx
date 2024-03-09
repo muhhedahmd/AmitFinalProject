@@ -12,7 +12,6 @@ const CounterOfThequantitiy = forwardRef(function CounterOfThequantitiy(
   const counterRef = useRef();
   const { EditOnQtyItemCart , ReflectChangesItemCart } = useCart();
   const [counterVal, setCounterVal] = useState(1);
-  console.log(counterVal)
   useEffect(()=>{
     if(item.quantity){
       setCounterVal(item.quantity)
@@ -21,7 +20,6 @@ const CounterOfThequantitiy = forwardRef(function CounterOfThequantitiy(
 
 
   const handleIncrement = () => {
-    console.log( "item.quantity", item.quantity)
 
 
 
@@ -73,7 +71,6 @@ const CounterOfThequantitiy = forwardRef(function CounterOfThequantitiy(
 
   useEffect(() => {
     counterRef.current = counterVal;
-    console.log(counterVal)
   }, [counterVal]);
 
   useImperativeHandle(ref, () => ({

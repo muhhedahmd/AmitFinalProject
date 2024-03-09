@@ -16,8 +16,9 @@ import CreditCardIcon from "@mui/icons-material/CreditCard";
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import AppsIcon from '@mui/icons-material/Apps';
 import PersonIcon from '@mui/icons-material/Person';
+
+
 export default function Payment({ totalPrice }) {
-  const [checked, setChecked] = useState({ cash: false, visa: false });
   const reset = (obj) => {
     const newObj = Object.keys(obj).map((ele) => {
       return (obj[ele] = false);
@@ -25,16 +26,6 @@ export default function Payment({ totalPrice }) {
     return newObj;
   };
 
-  const handleCardChecked = (e) => {
-    const { name } = e.target;
-    setChecked(reset(checked));
-    setChecked((prev) => {
-      return {
-        ...prev,
-        [name]: !prev[name],
-      };
-    });
-  };
   const [selectedValue, setSelectedValue] = useState({
     cash: true,
     visa: false,
@@ -201,9 +192,7 @@ export default function Payment({ totalPrice }) {
           
           >
             <Input
-            sx={{
-              // padding:" 0 .5rem"
-            }}
+           
             type="date"
               variant="standard"
               startAdornment={

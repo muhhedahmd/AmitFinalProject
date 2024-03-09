@@ -1,17 +1,14 @@
-import { Box } from '@mui/material'
 import { Button } from '@mui/material'
 import { pink } from '@mui/material/colors'
-import React, { useState } from 'react'
+import React, {  } from 'react'
 
-const LoadMore = ({state , setState ,  dataLen , dataOfCatogriesLen ,...others}) => {
+const LoadMore = ({state , setState ,  dataLen , dataOfCatogriesLen }) => {
     
 
     const  handleClick = (state , setState)=>{
 
-        console.log(dataLen)
         if(dataLen > state )
         {
-            console.log(state)
             let reminder =  dataLen - state
             if(reminder > 5  ){
                 setState(prev=> prev + 5 )

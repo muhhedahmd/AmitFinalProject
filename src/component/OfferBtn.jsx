@@ -62,7 +62,6 @@ const OfferBtn = ({ children }) => {
   return (
     <StyledContainer>
       <StyledOfferBtn>{children}</StyledOfferBtn>
-      <div></div>
     </StyledContainer>
   );
 };

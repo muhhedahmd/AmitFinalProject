@@ -1,10 +1,9 @@
 import {
   createContext,
   useContext,
-  useEffect,
+
   useReducer,
 } from "react";
-import UseGetproduct from "../Hooks/UseProduct";
 
 const CartContext = createContext(null);
 

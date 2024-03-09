@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { AppBar, List, ListItem, Toolbar, Typography } from "@mui/material";
+import {  List, ListItem, Typography } from "@mui/material";
 
 export const StyledProductHolder = styled(List)(({ theme }) => {
   return {
@@ -18,7 +18,43 @@ export const StyledProductHolder = styled(List)(({ theme }) => {
 });
 // ... (previous imports)
 
-export const StyledProduct = styled(List)(({ theme }) => {
+export const StyledProduct = styled(List)(({ theme ,singlecatagory }) => {
+  if(singlecatagory){
+    return{
+      overflow: "hidden",
+      padding: "0",
+      borderRadius: ".5rem",
+      height: "auto",
+      // boxShadow: "4px 2px 5px #ddd",
+      position: "relative",
+      display: "flex",
+      justifyContent: "center", // Center the content horizontally
+      alignItems: "center", // Center the content vertically
+      flexDirection: "column",
+      width: "100%", 
+      maxWidth: "20rem", // Adjusted to use rem units
+      margin: "1rem", // Add margin for spacing between items
+      gap: ".5rem",
+      textAlign:"center",
+      img: {
+        height: "auto",
+        maxWidth: "90%",
+      },
+      li: {
+        height:"fit-content",
+        textAlign:"center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "0",
+        listStyleType: "none",
+        width: "fit-content",
+      },
+
+    }
+  }
+  else {
+
   return {
     ".wrapper-img": {
       height: "16rem",
@@ -53,7 +89,6 @@ export const StyledProduct = styled(List)(({ theme }) => {
     },
 
     transition: ".4s",
-
     ":hover .info": {
       filter: "opacity(.3)",
     },
@@ -96,11 +131,13 @@ export const StyledProduct = styled(List)(({ theme }) => {
       width: "fit-content",
     },
   };
+  }
 });
 
 export const StyledDisc = styled(Typography)(({lineBreak = 1}) => {
   return {
-    textAlign: "start",
+    width:"100%",
+    textAlign: "center",
     display: "-webkit-box",
     WebkitLineClamp: lineBreak,
     WebkitBoxOrient: "vertical",
@@ -119,7 +156,7 @@ export const StyledBtnBottom = styled(ListItem)(({ theme }) => {
     button: {
       backgroundColor: "#f56f",
       color: "#fff",
-      width: "15rem !important",
+      width: "11rem !important",
     },
   };
 });

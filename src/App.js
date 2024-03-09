@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
-import Header from './component/Header/index'
 import UseRouter from './component/MYRoute';
 import {  useCart } from './component/Contexts/CartContext';
-import Footer from './component/Footer';
-import UseGetproduct from './component/Hooks/UseProduct';
 import axios from 'axios';
 import { pink } from '@mui/material/colors';
 import { createTheme } from '@mui/material/styles';
@@ -28,12 +25,12 @@ export default function App() {
     },
   });
 
-  const  {SetAllItems ,state}= useCart()
+  const  {SetAllItems }= useCart()
   
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("https://dummyjson.com/products").then((res)=>{
+     await axios.get("https://dummyjson.com/products").then((res)=>{
 
           SetAllItems (res.data.products) 
           // console.log(res , "res")
@@ -45,7 +42,7 @@ export default function App() {
 
     fetchData();
     
-  }, []); 
+  }, [SetAllItems]); 
 
 
   return (

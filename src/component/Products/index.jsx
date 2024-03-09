@@ -9,12 +9,10 @@ import {
   Collapse,
   Divider,
   Drawer,
-
   FormControlLabel,
   FormGroup,
   List,
   ListItem,
-
   Rating,
   Skeleton,
   Typography,
@@ -23,7 +21,6 @@ import {
 import SortIcon from "@mui/icons-material/Sort";
 import { Link } from "react-router-dom";
 import OfferBtn from "../OfferBtn";
-import UseGetproduct from "../Hooks/UseProduct";
 import { PATHS } from "../PATHS";
 import { useCart } from "../Contexts/CartContext";
 import {
@@ -37,6 +34,7 @@ import { grey, pink } from "@mui/material/colors";
 import axios from "axios";
 
 import LoadMore from "../loadMore";
+import UseGetproduct from "../Hooks/UseProduct";
 
 const Catogries = [
   "smartphones",
@@ -133,7 +131,7 @@ const ProductsSection = () => {
             const categoryData = response.data.products;
             newDataArray.push(...categoryData); // Push each categoryData array into newDataArray
           } catch (err) {
-            console.error("Error fetching category data:", err);
+            // console.error("Error fetching category data:", err);
           }
         }
 
@@ -307,64 +305,73 @@ const ProductsSection = () => {
                 flexDirection: `${isSm ? "row" : "column"}`,
               }}
             >
-            {isSm ?
-                "" :
-              <Collapse id={"SortCatogries"} 
-              anchor="bottom"
-              open={openSortCatogry}
-               in={openSortCatogry}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: `${isSm ? "row" : "column"}`,
-                  }}
+              {isSm ? (
+                ""
+              ) : (
+                <Collapse
+                  id={"SortCatogries"}
+                  anchor="bottom"
+                  open={openSortCatogry}
+                  in={openSortCatogry}
                 >
-                  {Object.keys(SortCatogry).map((item, i) => {
-                    if (i > 0) {
-                      return (
-                        <ListItem
-                          key={i}
-                          disablePadding
-                          sx={{
-                            p: " 0 0 0 .5rem",
-                            fontSize: ".8rem",
-                          }}
-                        >
-                          <FormGroup>
-                            <FormControlLabel
-                              control={
-                                <Checkbox
-                                  checked={SortCatogry[item]}
-                                  id={item}
-                                  component={"p"}
-                                  onChange={(e) =>
-                                    HandleCheckboxCatogry(
-                                      e,
-                                      item,
-                                      SortCatogry,
-                                      setSortCatogry,
-                                      true
-                                    )
-                                  }
-                                  sx={{
-                                    fontSize: ".9rem",
-                                    color: pink[500],
-                                    "&.Mui-checked": {
-                                      color: pink[600],
-                                    },
-                                  }}
-                                />
-                              }
-                              label={item}
-                            />
-                          </FormGroup>
-                        </ListItem>
-                      );
-                    }
-                  })}
-                </Box>
-              </Collapse>
-            }
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: `${isSm ? "row" : "column"}`,
+                    }}
+                  >
+                    {Object.keys(SortCatogry).map((item, i) =>  
+                    
+                    {
+          
+                      if (i > 0) {
+                        return (
+                          <ListItem
+                            key={i}
+                            disablePadding
+                            sx={{
+                              p: " 0 0 0 .5rem",
+                              fontSize: ".8rem",
+                            }}
+                          >
+                            <FormGroup>
+                              <FormControlLabel
+                                control={
+                                  <Checkbox
+                                    checked={SortCatogry[item]}
+                                    id={item}
+                                    component={"p"}
+                                    onChange={(e) =>
+                                      HandleCheckboxCatogry(
+                                        e,
+                                        item,
+                                        SortCatogry,
+                                        setSortCatogry,
+                                        true
+                                      )
+                                    }
+                                    sx={{
+                                      fontSize: ".9rem",
+                                      color: pink[500],
+                                      "&.Mui-checked": {
+                                        color: pink[600],
+                                      },
+                                    }}
+                                  />
+                                }
+                                label={item}
+                              />
+                            </FormGroup>
+                          </ListItem>
+                        );
+                      }
+                      else {
+                        return null
+                      }
+                    })}
+                  </Box>
+                </Collapse>
+              )}
             </List>
           </ListItem>
 
@@ -431,67 +438,66 @@ const ProductsSection = () => {
 
           <ListItem
             sx={{
-
               overflowX: "auto",
               display: "flex",
               scrollbarWidth: "none !important" /* Firefox */,
-
             }}
           >
             <List disablePadding>
-            {!isSm ? 
-              <Collapse id={"Catogries"} in={OpenCollapse}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: `${isSm ? "row" : "column"}`,
-                  }}
-                >
-                  {Object.keys(catogriesState).map((item, i) => {
-                    return (
-                      <ListItem
-                        key={i}
-                        disablePadding
-                        sx={{
-                          p: " 0 0 0 .5rem",
-                          fontSize: ".8rem",
-                        }}
-                      >
-                        <FormGroup>
-                          <FormControlLabel
-                            control={
-                              <Checkbox
-                                checked={catogriesState[item]}
-                                id={item}
-                                component={"p"}
-                                onChange={(e) =>
-                                  HandleCheckboxCatogry(
-                                    e,
-                                    item,
-                                    catogriesState,
-                                    setCatogriesState
-                                  )
-                                }
-                                sx={{
-                                  width: "max-content",
-                                  fontSize: ".9rem",
-                                  color: pink[500],
-                                  "&.Mui-checked": {
-                                    color: pink[600],
-                                  },
-                                }}
-                              />
-                            }
-                            label={item}
-                          />
-                        </FormGroup>
-                      </ListItem>
-                    );
-                  })}
-                </Box>
-              </Collapse>
-            :""}
-       
+              {!isSm ? (
+                <Collapse id={"Catogries"} in={OpenCollapse}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: `${isSm ? "row" : "column"}`,
+                    }}
+                  >
+                    {Object.keys(catogriesState).map((item, i) => {
+                      return (
+                        <ListItem
+                          key={i}
+                          disablePadding
+                          sx={{
+                            p: " 0 0 0 .5rem",
+                            fontSize: ".8rem",
+                          }}
+                        >
+                          <FormGroup>
+                            <FormControlLabel
+                              control={
+                                <Checkbox
+                                  checked={catogriesState[item]}
+                                  id={item}
+                                  component={"p"}
+                                  onChange={(e) =>
+                                    HandleCheckboxCatogry(
+                                      e,
+                                      item,
+                                      catogriesState,
+                                      setCatogriesState
+                                    )
+                                  }
+                                  sx={{
+                                    width: "max-content",
+                                    fontSize: ".9rem",
+                                    color: pink[500],
+                                    "&.Mui-checked": {
+                                      color: pink[600],
+                                    },
+                                  }}
+                                />
+                              }
+                              label={item}
+                            />
+                          </FormGroup>
+                        </ListItem>
+                      );
+                    })}
+                  </Box>
+                </Collapse>
+              ) : (
+                ""
+              )}
             </List>
           </ListItem>
         </List>
@@ -504,10 +510,7 @@ const ProductsSection = () => {
       >
         {!dataOfCatogries.length ? (
           <>
-            <StyledProductHolder
-            
-            
-            >
+            <StyledProductHolder>
               {data.map((item, i) =>
                 i <= loadMore ? (
                   <StyledProduct key={item.id}>
@@ -680,11 +683,7 @@ const ProductsSection = () => {
                           1,
                           item.thumbnail,
                           item.title,
-                          item.stock,
-                       
-                       
-                          
-                   
+                          item.stock
                         )
                       }
                       className="StyledBtnBottom"
@@ -870,8 +869,7 @@ const ProductsSection = () => {
                         1,
                         item.image,
                         item.title,
-                        item.stock,
-           
+                        item.stock
                       )
                     }
                     className="StyledBtnBottom"
@@ -894,130 +892,135 @@ const ProductsSection = () => {
         />
       </Box>
 
-{isSm ? 
-      <Drawer id={"Catogries"} 
-      open={OpenCollapse }
-      onClose={()=>setOpenCollapse(false)}
-      anchor="bottom"
-
-      
-      >
-
-                <Box
+      {isSm ? (
+        <Drawer
+          id={"Catogries"}
+          open={OpenCollapse}
+          onClose={() => setOpenCollapse(false)}
+          anchor="bottom"
+        >
+          <Box
+            sx={{
+              padding: ".5rem",
+              display: "flex",
+              flexDirection: "row",
+              maxHeight: "40vh",
+              overflowY: "scroll",
+              flexWrap: "wrap",
+            }}
+          >
+            {Object.keys(catogriesState).map((item, i) => {
+              return (
+                <ListItem
+                  key={i}
+                  disablePadding
                   sx={{
-                    padding:".5rem",
-                    display: "flex",
-                    flexDirection:"row",
-                    maxHeight:"40vh",
-                    overflowY:"scroll",
-                    flexWrap:"wrap",
+                    width: "50%",
+                    p: " 0 0 0 .5rem",
+                    fontSize: ".8rem",
                   }}
                 >
-                  {Object.keys(catogriesState).map((item, i) => {
-                    return (
-                      <ListItem
-                      
-                        key={i}
-                        disablePadding
-                        sx={{
-                          width:"50%",
-                          p: " 0 0 0 .5rem",
-                          fontSize: ".8rem",
-                        }}
-                      >
-                        <FormGroup>
-                          <FormControlLabel
-                            control={
-                              <Checkbox
-                                checked={catogriesState[item]}
-                                id={item}
-                                component={"p"}
-                                onChange={(e) =>
-                                  HandleCheckboxCatogry(
-                                    e,
-                                    item,
-                                    catogriesState,
-                                    setCatogriesState
-                                  )
-                                }
-                                sx={{
-                                  width: "max-content",
-                                  fontSize: ".9rem",
-                                  color: pink[500],
-                                  "&.Mui-checked": {
-                                    color: pink[600],
-                                  },
-                                }}
-                              />
-                            }
-                            label={item}
-                          />
-                        </FormGroup>
-                      </ListItem>
-                    );
-                  })}
-                </Box>
-              </Drawer>
-:""}
-
-{isSm ? 
-              <Drawer id={"SortCatogries"} 
-              onClose={()=>setopenSortCatogry(prev=>false)} 
-              anchor="bottom"
-              open={openSortCatogry}
-               >
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection:"column"
-                  }}
-                >
-                  {Object.keys(SortCatogry).map((item, i) => {
-                    if (i > 0) {
-                      return (
-                        <ListItem
-                          key={i}
-                          disablePadding
+                  <FormGroup>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={catogriesState[item]}
+                          id={item}
+                          component={"p"}
+                          onChange={(e) =>
+                            HandleCheckboxCatogry(
+                              e,
+                              item,
+                              catogriesState,
+                              setCatogriesState
+                            )
+                          }
                           sx={{
-                            p: " 0 0 0 .5rem",
-                            fontSize: ".8rem",
+                            width: "max-content",
+                            fontSize: ".9rem",
+                            color: pink[500],
+                            "&.Mui-checked": {
+                              color: pink[600],
+                            },
                           }}
-                        >
-                          <FormGroup>
-                            <FormControlLabel
-                              control={
-                                <Checkbox
-                                  checked={SortCatogry[item]}
-                                  id={item}
-                                  component={"p"}
-                                  onChange={(e) =>
-                                    HandleCheckboxCatogry(
-                                      e,
-                                      item,
-                                      SortCatogry,
-                                      setSortCatogry,
-                                      true
-                                    )
-                                  }
-                                  sx={{
-                                    fontSize: ".9rem",
-                                    color: pink[500],
-                                    "&.Mui-checked": {
-                                      color: pink[600],
-                                    },
-                                  }}
-                                />
-                              }
-                              label={item}
-                            />
-                          </FormGroup>
-                        </ListItem>
-                      );
-                    }
-                  })}
-                </Box>
-              </Drawer>
-:""}
+                        />
+                      }
+                      label={item}
+                    />
+                  </FormGroup>
+                </ListItem>
+              );
+            })}
+          </Box>
+        </Drawer>
+      ) : (
+        ""
+      )}
+
+      {isSm ? (
+        <Drawer
+          id={"SortCatogries"}
+          onClose={() => setopenSortCatogry((prev) => false)}
+          anchor="bottom"
+          open={openSortCatogry}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {Object.keys(SortCatogry).map((item, i) => {
+              if (i > 0) {
+                return (
+                  <ListItem
+                    key={i}
+                    disablePadding
+                    sx={{
+                      p: " 0 0 0 .5rem",
+                      fontSize: ".8rem",
+                    }}
+                  >
+                    <FormGroup>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={SortCatogry[item]}
+                            id={item}
+                            component={"p"}
+                            onChange={(e) =>
+                              HandleCheckboxCatogry(
+                                e,
+                                item,
+                                SortCatogry,
+                                setSortCatogry,
+                                true
+                              )
+                            }
+                            sx={{
+                              fontSize: ".9rem",
+                              color: pink[500],
+                              "&.Mui-checked": {
+                                color: pink[600],
+                              },
+                            }}
+                          />
+                        }
+                        label={item}
+                      />
+                    </FormGroup>
+                  </ListItem>
+                );
+              }
+              else {
+                return null
+              }
+            })}
+          </Box>
+        </Drawer>
+      ) : (
+        ""
+      )}
     </Box>
   );
 };

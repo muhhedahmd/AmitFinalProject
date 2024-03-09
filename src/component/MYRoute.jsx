@@ -7,6 +7,7 @@ import Home from '../pages/Home'
 import Cart from '../pages/Cart'
 import { useAuth } from './Contexts/Authenticated';
 import ProtectedRoute from './ProtectedRoute';
+import SingleCatagory from './SingleCatagory';
 
 const UseRouter = () => {
   const { isAuthenticated } = useAuth();
@@ -19,6 +20,7 @@ const UseRouter = () => {
         { index: true, element: <Home /> },
         { path: PATHS.cart, element: <Cart /> },
         { path: `${PATHS.SingleProduct}/:id`, element: <SingleProduct /> },
+        { path: `${PATHS.SingleCatagory}/:id`, element: <SingleCatagory /> },
       ]
     },
     { path: "*", element: <h2>Page not found</h2> }

@@ -127,40 +127,46 @@ export const StyledHolderList = styled(List)(({theme  , col})=>{
 
 
 export const StyledShoopinCartIcon = styled(ListItem)(({cartItems})=>{
-    return {
-        position:"relative",
+    if(cartItems){
+        // console.log(cartItems, "cartItems")
+        return{
+            position:"relative",
             cursor: "pointer",
-                if(cartItems){
-                    // console.log(cartItems, "cartItems")
-                    return{
-                        
-                    ':before':{
-                        
-                        position:"absolute",
-                        
-                            content:`"${cartItems}"`,
-        
-                                
-                                background:pink[600],
-                                color:"white",
-                                display:"flex "
-                                ,justifyContent:"center",
-                                alignItems:"center",
-                                padding:".5rem",
-                                fontSize:".8rem",
-                                left: "48%",
-                                top: "42%",
-                                borderRadius:"50%",
-                                height:"1.2rem",
-                                width:"1.2rem",
-                            }
-                        }
+            
+        ':before':{
+            
+            position:"absolute",
+            
+                content:`"${cartItems}"`,
 
-                        },
-                
+                    
+                    background:pink[600],
+                    color:"white",
+                    display:"flex "
+                    ,justifyContent:"center",
+                    alignItems:"center",
+                    padding:".5rem",
+                    fontSize:".8rem",
+                    left: "48%",
+                    top: "42%",
+                    borderRadius:"50%",
+                    height:"1.2rem",
+                    width:"1.2rem",
+                }
+            }
+        }
 
             
+    
+else {
+
+    return {
+        position:"relative",
+        cursor: "pointer",
+        
+        
     }
+}
 })
 export const StyledDropDownMenu = styled(List)(({theme})=>{
     return {

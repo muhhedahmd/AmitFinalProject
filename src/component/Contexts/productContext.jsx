@@ -1,5 +1,4 @@
-import axios from 'axios';
-import{ createContext, useContext, useEffect, useState } from 'react';
+import{ createContext,  } from 'react';
 
 const ProductContext = createContext(null);
 
