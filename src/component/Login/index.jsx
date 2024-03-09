@@ -124,7 +124,7 @@ const Login = () => {
           sx={{
             position: "relative",
             width: `${isMd ? "100%" : "calc(100vw - 32rem)"}`,
-            height: " 100vh",
+            height: `${isMd ? "65vh" : "100vh" }`,
             background: " #F1F3F6",
             color: "#fff",
           }}
@@ -169,7 +169,7 @@ const Login = () => {
           >
             <img
               src={LoginImg}
-              style={{ width: `${isMd ? "15rem" : "32vw"}`, height: "auto" }}
+              style={{ width: `${isMd ? "14rem" : "32vw"}`, height: "auto" }}
               alt="ll"
             />
           </Box>
@@ -178,7 +178,7 @@ const Login = () => {
         <FormGroup
           style={{
             display: "flex",
-            justifyContent: "center",
+            justifyContent: `${isMd? "flex-start" : "center"}`,
             alignItems: "center",
             gap: "1.35rem",
             flexDirection: "column",
