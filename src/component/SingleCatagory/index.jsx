@@ -1,4 +1,4 @@
-import { Box, Button, ListItem, Rating, Skeleton, Typography } from "@mui/material";
+import { Box, Button, ListItem, Rating, Skeleton, Typography, useMediaQuery } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -16,6 +16,7 @@ const SingleCatagory = () => {
 
   const [Data, SetData] = useState([]);
   const  [isLoading ]  = useState(false)
+  const isSm = useMediaQuery((theme)=> theme.breakpoints.down("sm"))
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +44,7 @@ const SingleCatagory = () => {
     
         <Box
         sx={{
-          padding:"3rem 1rem"
+          margin:"2rem 1rem 4rem 1rem"
         }}
         >
       <Typography
@@ -66,12 +67,17 @@ const SingleCatagory = () => {
 
           <StyledProductHolder 
             sx={{
-              padding:"3rem 2rem"
+              width:"100% !important",
+              padding:"1rem 0 !important"
             }}
           >
               {Data.map((item, i) =>
              
                   <StyledProduct
+                  sx={{
+                    padding:`${isSm ?  "0  0 0 0 !important" : "" }`,
+                    margin:`${isSm ?  "0  -1rem  0 0 !important" : "" }` ,
+                  }}
                   singlecatagory={true}
                   
                    key={item.id}>
