@@ -74,8 +74,14 @@ const ProductsSection = () => {
     "https://dummyjson.com/products"
   );
 
-  const EmptyArray = new Array(20);
-  const [data, setData] = useState(EmptyArray);
+  
+  
+  
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const emptyObjects = Array.from({ length: 20 }, () => ({}));
+    setData(emptyObjects);
+  }, []);
 
   const [dataOfCatogries, setDataOfCatogries] = useState([]);
 

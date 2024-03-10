@@ -623,9 +623,10 @@ const SingleProduct = () => {
               >
                 <ListItem
                   className="wrapper-img"
-                  sx={{
+                  style={{
                   width:"100%",
-                    height: "18rem",
+                    height: "10rem ",
+                    overflow:"hidden !important"
                   }}
                 >
                   {false ? (

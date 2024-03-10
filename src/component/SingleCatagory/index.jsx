@@ -9,6 +9,7 @@ import { grey, pink } from "@mui/material/colors";
 import { useCart } from "../Contexts/CartContext";
 import Footer from "../Footer";
 import { PATHS } from "../PATHS";
+import { ToastContainer, toast } from "react-toastify";
 
 const SingleCatagory = () => {
   const { id } = useParams();
@@ -17,6 +18,7 @@ const SingleCatagory = () => {
   const [Data, SetData] = useState([]);
   const  [isLoading ]  = useState(false)
   const isSm = useMediaQuery((theme)=> theme.breakpoints.down("sm"))
+  const notify = () => toast("Wow so easy !");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -252,6 +254,9 @@ const SingleCatagory = () => {
                       margin:"0 !important"
                     }}
                       onClick={() =>
+                      {
+
+                        
                         AddToCart(
                           item.id,
                           Math.floor(
@@ -263,6 +268,8 @@ const SingleCatagory = () => {
                           item.title,
                           item.stock
                         )
+                        return notify
+                      }
                       }
                       className="StyledBtnBottom"
                     >
@@ -290,6 +297,7 @@ const SingleCatagory = () => {
 
 <Footer/>
 
+<ToastContainer />
     </Box>
   );
 };
