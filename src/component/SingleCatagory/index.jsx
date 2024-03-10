@@ -97,8 +97,8 @@ const SingleCatagory = () => {
                         <img
                           style={{
                             objectFit: "cover",
-                            height: "10rem",
-                            width: "100%",
+                            height: "13rem",
+                            width: "13rem",
                             overflow: "initial",
                           }}
                           loading="lazy"

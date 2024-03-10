@@ -3,9 +3,19 @@ import {  List, ListItem, Typography } from "@mui/material";
 
 export const StyledProductHolder = styled(List)(({ theme }) => {
   return {
-    [theme.breakpoints.down("sm")]:{
+  [theme.breakpoints.down("sm")]:{
 
-      margin: "0 1.25rem",
+    padding: "0rem 2rem 0rem 0",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    },
+    '@media(max-width: 375px)':{
+      padding:"0",
+      margin: "0 auto",
+      width:" 100vw",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     },
     padding: "1rem 0",
     display: "grid",

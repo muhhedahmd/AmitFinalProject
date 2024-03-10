@@ -250,7 +250,7 @@ const ProductsSection = () => {
   return (
     <Box
       sx={{
-        paddingRight: "1.5rem",
+        paddingRight: `${isSm ? "0" : "1.5rem"}`,
         display: "flex",
         flexDirection: `${isSm ? "column" : "row"}`,
       }}
@@ -399,7 +399,7 @@ const ProductsSection = () => {
             >
               Catogries +
             </Button>
-            {OpenCollapse ? (
+            {OpenCollapse && !isSm ? (
               <Button
                 component={"p"}
                 sx={{
@@ -904,11 +904,46 @@ const ProductsSection = () => {
               padding: ".5rem",
               display: "flex",
               flexDirection: "row",
-              maxHeight: "40vh",
+              height:"50vh",
               overflowY: "scroll",
               flexWrap: "wrap",
             }}
           >
+              <Button
+              fullWidth
+                component={"p"}
+                sx={{
+                  background: "transparent",
+                  color: pink[500],
+                  boxShadow: "none",
+                  justifyContent:"flex-start",
+                  alignItems:"center",
+
+                  ":focus": {
+                    background: "transparent",
+                    boxShadow: "none",
+                  },
+                  ":hover": {
+                    background: "transparent",
+                    boxShadow: "none",
+                  },
+                }}
+                color="info"
+                aria-describedby={"Catogries"}
+                variant="contained"
+                onClick={() => {
+                  setCatogriesState((prevState) => {
+                    const newState = {};
+                    Object.keys(prevState).forEach((key) => {
+                      newState[key] = false;
+                    });
+                    setOpenCollapse(false)
+                    return newState;
+                  });
+                }}
+              >
+                clear -
+              </Button>
             {Object.keys(catogriesState).map((item, i) => {
               return (
                 <ListItem
@@ -968,6 +1003,7 @@ const ProductsSection = () => {
             sx={{
               display: "flex",
               flexDirection: "column",
+              height:"50vh",
             }}
           >
             {Object.keys(SortCatogry).map((item, i) => {
