@@ -96,9 +96,12 @@ const CartItem = ({img  ,title  , price , id  , quantity, ...rest} ,props ) => {
             }}
             >
                     <CounterOfThequantitiy
+                    key={id}
                     item={rest.item}
                     cart={true}
-                     ref={counterRef}/>
+                     ref={counterRef}
+                        
+                     />
             </ListItem>
  
 

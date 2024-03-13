@@ -69,7 +69,7 @@ const Reducer = (state, action) => {
             ? {
                 ...item,
                 quantity: action.payload.counter,
-                Totalprice: action.payload.counter * Math.flooritem.price,
+                Totalprice: action.payload.counter * Math.floor(item.price),
               }
             : item
         ),

@@ -20,18 +20,19 @@ export const StyledCounterBtn = styled.button(({theme})=>{
 export const StyledCounterText = styled.input(({theme , cart})=>{
     return {
         color:pink[500],
-        border: `${ cart ? "none" : "1px solid #3334"}`,
+        border: "none !important",
         // padding: `${cart ? "2rem" : "2rem" }`,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         width:"1rem",
         transition:".3s",
+        textAlign:"center",
         ':hover , :focus':{
             outline:"none !important",
-        // border: ``,
-        border: `${ cart ? "none" : "1px solid ${pink[500]"}`,
+            // border: ``,
 
+            border: "none !important",
 
         },
         maxWidth:"5rem"
