@@ -1,40 +1,29 @@
 import React, { useEffect, useState } from "react";
-import ZoomInIcon from "@mui/icons-material/ZoomIn";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import ShuffleIcon from "@mui/icons-material/Shuffle";
+
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   Box,
   Button,
   Checkbox,
   Collapse,
-  Divider,
-  Drawer,
   FormControlLabel,
   FormGroup,
   List,
   ListItem,
-  Rating,
-  Skeleton,
-  Typography,
+
   useMediaQuery,
 } from "@mui/material";
 import SortIcon from "@mui/icons-material/Sort";
-import { Link } from "react-router-dom";
-import OfferBtn from "../OfferBtn";
-import { PATHS } from "../PATHS";
-import { useCart } from "../Contexts/CartContext";
-import {
-  ProductOptionsIconsList,
-  StyledBtnBottom,
-  StyledDisc,
-  StyledProduct,
-  StyledProductHolder,
-} from "./Style";
-import { grey, pink } from "@mui/material/colors";
+
+import {  pink } from "@mui/material/colors";
 import axios from "axios";
 
 import LoadMore from "../loadMore";
 import UseGetproduct from "../Hooks/UseProduct";
+import {  ToastContainer } from "react-toastify";
+import ProductDrawrs from "./ProductDrawr";
+import ProductsHolder from "./ProductsHolder";
 
 const Catogries = [
   "smartphones",
@@ -64,30 +53,20 @@ const categoriesObject = {};
 Catogries.forEach((category) => {
   categoriesObject[category] = false;
 });
+const emptyObjects = Array.from({ length: 20 }, () => ({}));
 
 const ProductsSection = () => {
+
   const [OpenCollapse, setOpenCollapse] = useState(false);
   const [catogriesState, setCatogriesState] = useState(categoriesObject);
-  const { AddToCart } = useCart();
 
-  const { memoizedData, isLoading } = UseGetproduct(
+  const { memoizedData } = UseGetproduct(
     "https://dummyjson.com/products"
   );
 
-  
-  
-  
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const emptyObjects = Array.from({ length: 20 }, () => ({}));
-    setData(emptyObjects);
-  }, []);
+  const [data, setData] = useState(emptyObjects);
 
   const [dataOfCatogries, setDataOfCatogries] = useState([]);
-
-  useEffect(() => {
-    setData(memoizedData);
-  }, [memoizedData]);
 
   const HandleCheckboxCatogry = (e, item, state, setState, onlyOne) => {
     const { checked } = e.target;
@@ -249,7 +228,7 @@ const ProductsSection = () => {
     }
   }, [SortCatogry, dataOfCatogries.length, memoizedData]);
 
-  const [loadMore, setLoadMore] = useState(10);
+  const [loadMore, setLoadMore] = useState(11);
 
   const isSm = useMediaQuery((theme) => theme.breakpoints.down("md"));
 
@@ -259,6 +238,7 @@ const ProductsSection = () => {
         paddingRight: `${isSm ? "0" : "1.5rem"}`,
         display: "flex",
         flexDirection: `${isSm ? "column" : "row"}`,
+        // alignItems:"flex-start",
       }}
     >
       <Box
@@ -299,7 +279,7 @@ const ProductsSection = () => {
 
           <ListItem
             sx={{
-              scrollbarWidth: "none !important" /* Firefox */,
+              scrollbarWidth: "none !important",
 
               overflowX: "auto",
             }}
@@ -326,10 +306,7 @@ const ProductsSection = () => {
                       flexDirection: `${isSm ? "row" : "column"}`,
                     }}
                   >
-                    {Object.keys(SortCatogry).map((item, i) =>  
-                    
-                    {
-          
+                    {Object.keys(SortCatogry).map((item, i) => {
                       if (i > 0) {
                         return (
                           <ListItem
@@ -370,9 +347,8 @@ const ProductsSection = () => {
                             </FormGroup>
                           </ListItem>
                         );
-                      }
-                      else {
-                        return null
+                      } else {
+                        return null;
                       }
                     })}
                   </Box>
@@ -515,379 +491,20 @@ const ProductsSection = () => {
         }}
       >
         {!dataOfCatogries.length ? (
-          <>
-            <StyledProductHolder>
-              {data.map((item, i) =>
-                i <= loadMore ? (
-                  <StyledProduct key={item.id}>
-                    <ListItem
-                      className="wrapper-img"
-                      width="100%"
-                      sx={{
-                        height: "18rem",
-                      }}
-                    >
-                      {isLoading ? (
-                        <Skeleton
-                          component="div"
-                          variant="rectangular"
-                          sx={{
-                            width: "16rem",
-                            height: "100%",
-                            bgcolor: "#666",
-                          }}
-                        />
-                      ) : (
-                        <img
-                          style={{
-                            objectFit: "cover",
-                            height: "8rem",
-                            width: "8rem",
-                            overflow: "initial",
-                          }}
-                          loading="lazy"
-                          src={item.thumbnail}
-                          alt="img"
-                        />
-                      )}
-                    </ListItem>
-                    <Divider
-                      variant="fullWidth"
-                      style={{
-                        background: "#ddd",
-                        width: "122%",
-                        margin: "0 0 .4rem 0",
-                      }}
-                      component="div"
-                    />
-                    <Box className="info">
-                      <ListItem disablePadding>
-                        {isLoading ? (
-                          <Skeleton
-                            component="div"
-                            variant="text"
-                            width={"16rem"}
-                            height={""}
-                            sx={{
-                              bgcolor: "#666",
-                            }}
-                          />
-                        ) : (
-                          <Rating
-                            name="read-only"
-                            loading="lazy"
-                            value={Math.round(item.rating)}
-                            readOnly
-                          />
-                        )}
-                      </ListItem>
 
-                      <ListItem disablePadding>
-                        {isLoading ? (
-                          <Skeleton
-                            component="div"
-                            variant="text"
-                            width={"16rem"}
-                            height={""}
-                            sx={{
-                              bgcolor: "#666",
-                            }}
-                          />
-                        ) : (
-                          <StyledDisc
-                            variant="subtitle1"
-                            color="text.secondary"
-                            loading="lazy"
-                          >
-                            {item.title}
-                          </StyledDisc>
-                        )}
-                      </ListItem>
-                      <ListItem disablePadding>
-                        {isLoading ? (
-                          <Skeleton
-                            width={"12rem"}
-                            height={"2rem"}
-                            sx={{
-                              bgcolor: "#666",
-                            }}
-                          />
-                        ) : (
-                          <Box
-                            sx={{
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                              gap: "1rem",
-                            }}
-                          >
-                            <Typography
-                              variant="body1"
-                              component={"p"}
-                              sx={{
-                                fontSize: "1.199rem",
-                                color: pink[500],
-                              }}
-                              loading="lazy"
-                            >
-                              {Math.floor(
-                                item?.price -
-                                  (item?.price * item?.discountPercentage) / 100
-                              )}
-                              $
-                            </Typography>
-                            <Typography
-                              variant="body1"
-                              component={"p"}
-                              sx={{
-                                color: grey[500],
-                                textDecoration: "line-throw",
-                              }}
-                              loading="lazy"
-                            >
-                              {item.price}$
-                            </Typography>
-                            <Typography
-                              sx={{
-                                color: pink[400],
-                              }}
-                              variant="body1"
-                              component={"p"}
-                              loading="lazy"
-                            >
-                              {item.discountPercentage}% off
-                            </Typography>
-                          </Box>
-                        )}
-                      </ListItem>
-                    </Box>
+          <ProductsHolder 
+          data={memoizedData}
+          loadMore={loadMore}
 
-                    <ProductOptionsIconsList className="product-options-icons">
-                      <ListItem role="button">
-                        <ZoomInIcon fontSize="large" />
-                      </ListItem>
-
-                      <ListItem>
-                        <FavoriteBorderIcon fontSize="large" />
-                      </ListItem>
-
-                      <ListItem>
-                        <Link to={`${PATHS.SingleProduct}/${item.id}`}>
-                          <ShuffleIcon fontSize="large" />
-                        </Link>
-                      </ListItem>
-                    </ProductOptionsIconsList>
-
-                    <StyledBtnBottom
-                      onClick={() =>
-                        AddToCart(
-                          item.id,
-                          Math.floor(
-                            item?.price -
-                              (item?.price * item?.discountPercentage) / 100
-                          ),
-                          1,
-                          item.thumbnail,
-                          item.title,
-                          item.stock
-                        )
-                      }
-                      className="StyledBtnBottom"
-                    >
-                      <OfferBtn>Add to cart</OfferBtn>
-                    </StyledBtnBottom>
-                  </StyledProduct>
-                ) : (
-                  ""
-                )
-              )}
-            </StyledProductHolder>
-          </>
+          />
         ) : (
-          <StyledProductHolder>
-            {dataOfCatogries?.map((item, i) =>
-              i <= loadMore ? (
-                <StyledProduct key={item.id}>
-                  <ListItem
-                    className="wrapper-img"
-                    width="100%"
-                    sx={{
-                      height: "18rem",
-                    }}
-                  >
-                    {isLoading ? (
-                      <Skeleton
-                        component="div"
-                        variant="rectangular"
-                        sx={{
-                          width: "16rem",
-                          height: "100%",
-                          bgcolor: "#666",
-                        }}
-                      />
-                    ) : (
-                      <img
-                        style={{
-                          objectFit: "cover",
-                          height: "8rem",
-                          width: "8rem",
-                          overflow: "initial",
-                        }}
-                        loading="lazy"
-                        src={item.thumbnail}
-                        alt="img"
-                      />
-                    )}
-                  </ListItem>
-                  <Divider
-                    variant="fullWidth"
-                    style={{
-                      background: "#ddd",
-                      width: "122%",
-                      margin: "0 0 .4rem 0",
-                    }}
-                    component="div"
-                  />
-                  <Box className="info">
-                    <ListItem disablePadding>
-                      {isLoading ? (
-                        <Skeleton
-                          component="div"
-                          variant="text"
-                          width={"16rem"}
-                          height={""}
-                          sx={{
-                            bgcolor: "#666",
-                          }}
-                        />
-                      ) : (
-                        <Rating
-                          name="read-only"
-                          loading="lazy"
-                          value={Math.round(item.rating)}
-                          readOnly
-                        />
-                      )}
-                    </ListItem>
 
-                    <ListItem disablePadding>
-                      {isLoading ? (
-                        <Skeleton
-                          component="div"
-                          variant="text"
-                          width={"16rem"}
-                          height={""}
-                          sx={{
-                            bgcolor: "#666",
-                          }}
-                        />
-                      ) : (
-                        <StyledDisc
-                          variant="subtitle1"
-                          color="text.secondary"
-                          loading="lazy"
-                        >
-                          {item.title}
-                        </StyledDisc>
-                      )}
-                    </ListItem>
-                    <ListItem disablePadding>
-                      {isLoading ? (
-                        <Skeleton
-                          width={"12rem"}
-                          height={"2rem"}
-                          sx={{
-                            bgcolor: "#666",
-                          }}
-                        />
-                      ) : (
-                        <Box
-                          sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            gap: "1rem",
-                          }}
-                        >
-                          <Typography
-                            variant="body1"
-                            component={"p"}
-                            sx={{
-                              fontSize: "1.199rem",
-                              color: pink[500],
-                            }}
-                            loading="lazy"
-                          >
-                            {Math.floor(
-                              item?.price -
-                                (item?.price * item?.discountPercentage) / 100
-                            )}
-                            $
-                          </Typography>
-                          <Typography
-                            variant="body1"
-                            component={"p"}
-                            sx={{
-                              color: grey[500],
-                              textDecoration: "line-throw",
-                            }}
-                            loading="lazy"
-                          >
-                            {item.price}$
-                          </Typography>
-                          <Typography
-                            sx={{
-                              color: pink[400],
-                            }}
-                            variant="body1"
-                            component={"p"}
-                            loading="lazy"
-                          >
-                            {item.discountPercentage}% off
-                          </Typography>
-                        </Box>
-                      )}
-                    </ListItem>
-                  </Box>
+          <ProductsHolder 
+          data={dataOfCatogries}
+          loadMore={loadMore}
 
-                  <ProductOptionsIconsList className="product-options-icons">
-                    <ListItem role="button">
-                      <ZoomInIcon fontSize="large" />
-                    </ListItem>
+          />
 
-                    <ListItem>
-                      <FavoriteBorderIcon fontSize="large" />
-                    </ListItem>
-
-                    <ListItem>
-                      <Link to={`${PATHS.SingleProduct}/${item.id}`}>
-                        <ShuffleIcon fontSize="large" />
-                      </Link>
-                    </ListItem>
-                  </ProductOptionsIconsList>
-
-                  <StyledBtnBottom
-                    onClick={() =>
-                      AddToCart(
-                        item.id,
-                        item?.price -
-                          (item?.price * item?.discountPercentage) / 100,
-                        1,
-                        item.image,
-                        item.title,
-                        item.stock
-                      )
-                    }
-                    className="StyledBtnBottom"
-                  >
-                    <OfferBtn>Add to cart</OfferBtn>
-                  </StyledBtnBottom>
-                </StyledProduct>
-              ) : (
-                ""
-              )
-            )}
-          </StyledProductHolder>
         )}
 
         <LoadMore
@@ -898,171 +515,18 @@ const ProductsSection = () => {
         />
       </Box>
 
-      {isSm ? (
-        <Drawer
-          id={"Catogries"}
-          open={OpenCollapse}
-          onClose={() => setOpenCollapse(false)}
-          anchor="bottom"
-        >
-          <Box
-            sx={{
-              padding: ".5rem",
-              display: "flex",
-              flexDirection: "row",
-              height:"50vh",
-              overflowY: "scroll",
-              flexWrap: "wrap",
-            }}
-          >
-              <Button
-              fullWidth
-                component={"p"}
-                sx={{
-                  background: "transparent",
-                  color: pink[500],
-                  boxShadow: "none",
-                  justifyContent:"flex-start",
-                  alignItems:"center",
-
-                  ":focus": {
-                    background: "transparent",
-                    boxShadow: "none",
-                  },
-                  ":hover": {
-                    background: "transparent",
-                    boxShadow: "none",
-                  },
-                }}
-                color="info"
-                aria-describedby={"Catogries"}
-                variant="contained"
-                onClick={() => {
-                  setCatogriesState((prevState) => {
-                    const newState = {};
-                    Object.keys(prevState).forEach((key) => {
-                      newState[key] = false;
-                    });
-                    setOpenCollapse(false)
-                    return newState;
-                  });
-                }}
-              >
-                clear -
-              </Button>
-            {Object.keys(catogriesState).map((item, i) => {
-              return (
-                <ListItem
-                  key={i}
-                  disablePadding
-                  sx={{
-                    width: "50%",
-                    p: " 0 0 0 .5rem",
-                    fontSize: ".8rem",
-                  }}
-                >
-                  <FormGroup>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={catogriesState[item]}
-                          id={item}
-                          component={"p"}
-                          onChange={(e) =>
-                            HandleCheckboxCatogry(
-                              e,
-                              item,
-                              catogriesState,
-                              setCatogriesState
-                            )
-                          }
-                          sx={{
-                            width: "max-content",
-                            fontSize: ".9rem",
-                            color: pink[500],
-                            "&.Mui-checked": {
-                              color: pink[600],
-                            },
-                          }}
-                        />
-                      }
-                      label={item}
-                    />
-                  </FormGroup>
-                </ListItem>
-              );
-            })}
-          </Box>
-        </Drawer>
-      ) : (
-        ""
-      )}
-
-      {isSm ? (
-        <Drawer
-          id={"SortCatogries"}
-          onClose={() => setopenSortCatogry((prev) => false)}
-          anchor="bottom"
-          open={openSortCatogry}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              height:"50vh",
-            }}
-          >
-            {Object.keys(SortCatogry).map((item, i) => {
-              if (i > 0) {
-                return (
-                  <ListItem
-                    key={i}
-                    disablePadding
-                    sx={{
-                      p: " 0 0 0 .5rem",
-                      fontSize: ".8rem",
-                    }}
-                  >
-                    <FormGroup>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            checked={SortCatogry[item]}
-                            id={item}
-                            component={"p"}
-                            onChange={(e) =>
-                              HandleCheckboxCatogry(
-                                e,
-                                item,
-                                SortCatogry,
-                                setSortCatogry,
-                                true
-                              )
-                            }
-                            sx={{
-                              fontSize: ".9rem",
-                              color: pink[500],
-                              "&.Mui-checked": {
-                                color: pink[600],
-                              },
-                            }}
-                          />
-                        }
-                        label={item}
-                      />
-                    </FormGroup>
-                  </ListItem>
-                );
-              }
-              else {
-                return null
-              }
-            })}
-          </Box>
-        </Drawer>
-      ) : (
-        ""
-      )}
+      <ProductDrawrs
+        HandleCheckboxCatogry={HandleCheckboxCatogry}
+        OpenCollapse={OpenCollapse}
+        SortCatogry={SortCatogry}
+        catogriesState={catogriesState}
+        openSortCatogry={openSortCatogry}
+        setCatogriesState={setCatogriesState}
+        setopenSortCatogry={setopenSortCatogry}
+        setOpenCollapse={setOpenCollapse}
+        setSortCatogry={setSortCatogry}
+      />
+      <ToastContainer />
     </Box>
   );
 };

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import {  List, ListItem, Typography } from "@mui/material";
+import { pink } from "@mui/material/colors";
 
 export const StyledProductHolder = styled(List)(({ theme }) => {
   return {
@@ -26,16 +27,84 @@ export const StyledProductHolder = styled(List)(({ theme }) => {
 
   };
 });
-// ... (previous imports)
 
-export const StyledProduct = styled(List)(({ theme ,singlecatagory }) => {
+
+export const StyledProduct = styled(List)(({  singlecatagory , quantity }) => {
+
+
   if(singlecatagory){
+     
+    if(quantity ){
+
+      
+      return {
+          overflow: "hidden",
+          padding: "0",
+          borderRadius: ".5rem",
+          height: "auto",
+          position: "relative",
+          display: "flex",
+          justifyContent: "center", // Center the content horizontally
+          alignItems: "center", // Center the content vertically
+          flexDirection: "column",
+          width: "100%", 
+          maxWidth: "20rem", // Adjusted to use rem units
+          margin: "1rem", // Add margin for spacing between items
+          gap: ".5rem",
+          textAlign:"center",
+          img: {
+            height: "auto",
+            maxWidth: "90%",
+          },
+          li: {
+            height:"fit-content",
+            textAlign:"center",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "0",
+            listStyleType: "none",
+            width: "fit-content",
+          },
+    
+        
+        ':before':{
+          
+          position:"absolute",
+        
+            content:`"${quantity}"`,
+  
+                
+            background:pink[600],
+            color:"white",
+            display:"flex "
+            ,justifyContent:"center",
+                alignItems:"center",
+                padding:".5rem",
+                fontSize:".8rem",
+                left: "5%",
+                top: "89%",
+                zIndex:"100",
+                borderRadius:"50%",
+                height:"1.2rem",
+                width:"1.2rem",
+              
+            },
+    
+          }
+        }
+  
+    
+
+
     return{
+     
+   
+
       overflow: "hidden",
       padding: "0",
       borderRadius: ".5rem",
       height: "auto",
-      // boxShadow: "4px 2px 5px #ddd",
       position: "relative",
       display: "flex",
       justifyContent: "center", // Center the content horizontally
@@ -62,10 +131,13 @@ export const StyledProduct = styled(List)(({ theme ,singlecatagory }) => {
       },
 
     }
+
+
   }
   else {
 
   return {
+
     ".wrapper-img": {
       height: "16rem",
     },

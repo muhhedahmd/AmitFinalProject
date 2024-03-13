@@ -35,9 +35,10 @@ import OfferBtn from "../OfferBtn";
 import CounterOfThequantitiy from "../CounterOfThequantitiy";
 import Header from "../Header";
 import Footer from "../Footer";
+import { formatCurrency } from "../../utils/Currancy";
 
 const SingleProduct = () => {
-  const { AddToCart } = useCart();
+  const { AddToCart  } = useCart();
 
   const isSm = useMediaQuery((theme) => theme.breakpoints.down("md"));
   const isMd = useMediaQuery((theme) => theme.breakpoints.down("md"));
@@ -50,7 +51,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     setItem(memoizedData);
-    setImage((prev) => item.thumbnail);
+    setImage(() => item.thumbnail);
   }, [item.img, item.thumbnail, memoizedData]);
 
   const HandleImageClick = (e, img) => {
@@ -73,13 +74,12 @@ const SingleProduct = () => {
   }, [item.category]);
 
   const counterRef = useRef();
-  const [counterState ,setCounterState] = useState(counterRef) 
+  const [ ,setCounterState] = useState(counterRef) 
   
 
   useEffect(()=>{
     setCounterState(counterRef.current.getCounterState())
-    console.log(counterRef)
-  },[counterState])
+  },[])
 
 
   return (<>
@@ -478,7 +478,7 @@ const SingleProduct = () => {
               onClick={() =>
                 AddToCart(
                   item?.id,
-                  item?.price - (item?.price * item?.discountPercentage) / 100,
+                  formatCurrency(item?.price - (item?.price * item?.discountPercentage) / 100),
                   counterRef?.current.getCounterState(),
                   item?.thumbnail,
                   item?.title,
@@ -769,7 +769,11 @@ const SingleProduct = () => {
                     <ZoomInIcon fontSize="large" />
                   </ListItem>
 
-                  <ListItem>
+                  <ListItem
+                  role="button"
+                    onClick={()=>FavoriteBorderIcon(item.id)}
+                  
+                  >
                     <FavoriteBorderIcon fontSize="large" />
                   </ListItem>
 

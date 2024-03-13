@@ -33,6 +33,7 @@ import { StyledDiscountInp, StyledListItemForPriceSummary } from "./style";
 import AdaressSection from "../component/AdaressSection";
 import { useTheme } from "@emotion/react";
 import Payment from "../component/Payment";
+import { formatCurrency } from "../utils/Currancy";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -299,7 +300,7 @@ const Cart = () => {
               variant="body2"
               component={"p"}
             >
-              {state.cartItems.length ? "$" + TotalPrice : "No item Add Yet"}
+              {state.cartItems.length ? "$" + formatCurrency(TotalPrice) : "No item Add Yet"}
             </Typography>
           </Box>
         </Box>
@@ -344,7 +345,7 @@ const Cart = () => {
                 Total Bag
               </Typography>
               <Typography variant="p" component={"p"}>
-                ${TotalPrice}
+                ${formatCurrency(TotalPrice)}
               </Typography>
             </StyledListItemForPriceSummary>
 
@@ -407,7 +408,7 @@ const Cart = () => {
                 variant="h6"
                 component={"p"}
               >
-                ${TotalPrice + (state.discountCode ? 10 : 0) - 10}
+                ${formatCurrency(TotalPrice - (state.discountCode ? 10 : 0) - 10)}
               </Typography>
             </StyledListItemForPriceSummary>
 
@@ -453,7 +454,7 @@ const Cart = () => {
                     },
                   }}
                 >
-                  Continou
+                  Continue
                 </Button>
               )}
             </StyledListItemForPriceSummary>

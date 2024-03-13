@@ -29,10 +29,11 @@ import CounterOfThequantitiy from "../CounterOfThequantitiy";
 import { grey, pink } from "@mui/material/colors";
 import { StyledDisc } from "../Products/Style";
 import axios from "axios";
-import { ArrowBackIosNew, Close, MenuOutlined } from "@mui/icons-material";
+import { ArrowBackIosNew, Close, FavoriteBorder, MenuOutlined } from "@mui/icons-material";
 
 import logo from "./logo_dark.png";
 import PoperUser from "./PoperUser";
+import { formatCurrency } from "../../utils/Currancy";
 
 const Header = () => {
   const { state, TotalPrice } = useCart();
@@ -172,9 +173,13 @@ const Header = () => {
           <List
             sx={{
               display: "flex",
+              justifyContent:"center",
+              alignItems:"center",
+              gap:"2rem",
             }}
           >
             <StyledHolderDropDownMenu
+              disablePadding
               sx={{
                 position: "relative",
                 width: "fit-content",
@@ -218,66 +223,23 @@ const Header = () => {
                 })}
               </StyledDropDownMenu>
             </StyledHolderDropDownMenu>
-            <StyledHolderDropDownMenu
-              sx={{
-                position: "relative",
-                width: "fit-content",
-              }}
+            <ListItem
+            sx={{
+              padding:".5rem 0 0 0"
+            }}
+
             >
-              <Typography
-                sx={{
-                  color: grey[800],
-                  fontWeight: "bold",
-                  letterSpacing: "1.5px",
-                }}
-                component={"p"}
-                variant="body2"
-              >
-                More Info
-              </Typography>
 
-              <StyledDropDownMenu
-                sx={{
-                  width: "max-content !important",
-                }}
-                className="DropDown"
-              >
-                <ListItem
-                  sx={{
-                    width: "fit-content",
-                  }}
-                >
-                  <Typography
-                    variant="body2"
-                    component={"p"}
-                    sx={{
-                      textTransform: "capitalize",
-
-                      color: grey[700],
+                    <Link
+                    style={{
+                      padding:'0',
                     }}
-                  >
-                    <Link to={""}>About</Link>
-                  </Typography>
-                </ListItem>
-                <ListItem
-                  sx={{
-                    width: "fit-content",
-                  }}
-                >
-                  <Typography
-                    variant="body2"
-                    component={"p"}
-                    sx={{
-                      textTransform: "capitalize",
+                     to={"/wishlist"}>
+                      <FavoriteBorder />
 
-                      color: grey[700],
-                    }}
-                  >
-                    <Link to={""}>Contact</Link>
-                  </Typography>
-                </ListItem>
-              </StyledDropDownMenu>
-            </StyledHolderDropDownMenu>
+                    </Link>
+            </ListItem>
+         
           </List>
 
           <ListItem
@@ -286,7 +248,7 @@ const Header = () => {
             }}
           >
             <Link to="/">
-              <img src="./logo_dark.png" alt="logo_dark" />
+              <img src={logo} alt="logo_dark" />
             </Link>
           </ListItem>
 
@@ -520,7 +482,7 @@ const Header = () => {
               variant="body2"
               component={"p"}
             >
-              {state.cartItems.length ? "$" + TotalPrice : "No item Add Yet"}
+              {state.cartItems.length ? "$" + formatCurrency(TotalPrice) : "No item Add Yet"}
             </Typography>
           </Box>
 
@@ -801,6 +763,11 @@ const Header = () => {
             />
           </ListItem>
         </List>
+        <List
+        disablePadding
+        >
+
+
         <ListItem
           sx={{
             width: "100%",
@@ -827,6 +794,8 @@ const Header = () => {
 
             <ArrowBackIosNew fontSize="small" />
           </Button>
+       
+
         </ListItem>
         <ListItem
           // disablePadding
@@ -852,6 +821,30 @@ const Header = () => {
             </List>
           </Collapse>
         </ListItem>
+
+        <ListItem>
+        <Link
+                    style={{
+                      paddingLeft:".5rem",
+                      padding:'0',
+                      color:"#333",
+                      textDecoration:"none",
+                      fontSize:"1.3rem",
+                      display:"flex",
+                      alignItems:"center",
+                      justifyContent:"center",
+                      gap:"1rem"
+                    }}
+                     to={"/wishlist"}>
+                     
+                     Wish List <FavoriteBorder />
+
+                    </Link>
+        </ListItem>
+        </List>
+
+
+
       </Drawer>
     </StyledHeader>
   );
@@ -907,3 +900,4 @@ export default Header;
               })}
             </StyledHolderList>
           </ListItem> */
+

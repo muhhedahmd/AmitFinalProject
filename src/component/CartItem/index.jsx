@@ -6,6 +6,7 @@ import { useCart } from '../Contexts/CartContext'
 import { grey } from '@mui/material/colors'
 import { StyledDisc } from '../Products/Style'
 import { useTheme } from '@emotion/react'
+import { formatCurrency } from '../../utils/Currancy'
 
 
 const CartItem = ({img  ,title  , price , id  , quantity, ...rest} ,props ) => {
@@ -87,7 +88,7 @@ const CartItem = ({img  ,title  , price , id  , quantity, ...rest} ,props ) => {
 
             }}
             >
-                ${quantity * price}
+                ${formatCurrency(quantity * price)}
             </ListItem>
             <ListItem
             sx={{
