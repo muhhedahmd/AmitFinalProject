@@ -24,7 +24,6 @@ import { PATHS } from "../PATHS";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import { Favorite } from "@mui/icons-material";
-import { formatCurrency } from "../../utils/Currancy";
 
 const SingleCatagory = () => {
   const { id } = useParams();
@@ -108,10 +107,10 @@ const SingleCatagory = () => {
     Notifcation("cart" , id , title ,qty )
     AddToCart(
       id,
-      formatCurrency(
+     
         price -
           (price * discountPercentage) / 100
-      ),
+      ,
       1,
       thumbnail,
       title,

@@ -252,7 +252,9 @@ const Cart = () => {
         >
           {state?.cartItems?.map((item) => {
             return (
-              <Box>
+              <Box
+              key={item.id}
+              >
                 <CartItem {...item} item={item} />
                 {isSm ? (
                   ""
@@ -284,7 +286,6 @@ const Cart = () => {
                 fontSize: "1.2rem",
                 letterSpacing: "2px",
 
-                // color: #f07;
               }}
               variant="body2"
               component={"p"}
@@ -408,7 +409,7 @@ const Cart = () => {
                 variant="h6"
                 component={"p"}
               >
-                ${formatCurrency(TotalPrice - (state.discountCode ? 10 : 0) - 10)}
+                ${formatCurrency(TotalPrice - (DiscountInp? 10 : 0) +10 )}
               </Typography>
             </StyledListItemForPriceSummary>
 
@@ -476,7 +477,7 @@ const Cart = () => {
         ) : stepsState === 2 ? (
           <>
             <Payment
-              totalPrice={TotalPrice + (state.discountCode ? -10 : 0) + 10}
+              totalPrice={TotalPrice - (state.discountCode ? -10 : 0) + 10}
             />
 
             <Button

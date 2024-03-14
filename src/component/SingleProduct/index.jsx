@@ -478,7 +478,7 @@ const SingleProduct = () => {
               onClick={() =>
                 AddToCart(
                   item?.id,
-                  formatCurrency(item?.price - (item?.price * item?.discountPercentage) / 100),
+                  item?.price - (item?.price * item?.discountPercentage) / 100,
                   counterRef?.current.getCounterState(),
                   item?.thumbnail,
                   item?.title,
@@ -797,8 +797,7 @@ const SingleProduct = () => {
                       item.thumbnail,
                       item.title,
                       item.stock,
-                   
-                      
+            
 
                     )
                   }

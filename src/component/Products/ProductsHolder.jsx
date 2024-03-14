@@ -11,7 +11,6 @@ import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 import OfferBtn from '../OfferBtn';
-import { formatCurrency } from '../../utils/Currancy';
 
 const ProductsHolder = ({data ,loadMore }) => {
     const { AddToCart, AddWishList, state } = useCart();
@@ -233,18 +232,18 @@ const ProductsHolder = ({data ,loadMore }) => {
 
           <StyledBtnBottom
             onClick={() => {
+            
                 const qty = state.cartItems.find((itemx) => itemx.id === item.id  ) ? state.cartItems.find((itemx) => itemx.id === item.id  ).quantity + 1
      : null
 
-                console.log(qty)
 
               Notifcation("cart", item.id , item.title ,qty );
               AddToCart(
                 item.id,
-                formatCurrency(
+                
                   item?.price -
                     (item?.price * item?.discountPercentage) / 100
-                ),
+                ,
                 1,
                 item.thumbnail,
                 item.title,
