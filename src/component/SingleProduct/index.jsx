@@ -35,10 +35,9 @@ import OfferBtn from "../OfferBtn";
 import CounterOfThequantitiy from "../CounterOfThequantitiy";
 import Header from "../Header";
 import Footer from "../Footer";
-import { formatCurrency } from "../../utils/Currancy";
 
 const SingleProduct = () => {
-  const { AddToCart  } = useCart();
+  const { AddToCart   ,AddWishList} = useCart();
 
   const isSm = useMediaQuery((theme) => theme.breakpoints.down("md"));
   const isMd = useMediaQuery((theme) => theme.breakpoints.down("md"));
@@ -771,7 +770,7 @@ const SingleProduct = () => {
 
                   <ListItem
                   role="button"
-                    onClick={()=>FavoriteBorderIcon(item.id)}
+                    onClick={()=>AddWishList(item.id)}
                   
                   >
                     <FavoriteBorderIcon fontSize="large" />
