@@ -13,6 +13,7 @@ const UseGetproduct = ( API ) => {
           .then((res) => {
               setData(res.data.products)
               setIsLooding(false)
+              console.log(res.data.products)
    
             }
           ).catch((err) =>{

@@ -99,7 +99,7 @@ const ProductsSection = () => {
   useEffect(() => {
     const fetchData = async () => {
       const SelectedCategories = [];
-      const newDataArray = []; // Initialize as an array
+      const newDataArray = []; 
 
       Object.keys(catogriesState).forEach((category) => {
         if (catogriesState[category]) {
@@ -116,7 +116,6 @@ const ProductsSection = () => {
             const categoryData = response.data.products;
             newDataArray.push(...categoryData); // Push each categoryData array into newDataArray
           } catch (err) {
-            // console.error("Error fetching category data:", err);
           }
         }
 
@@ -204,7 +203,6 @@ const ProductsSection = () => {
     if (SelectedCategories === "Recomented") {
       setData(
         memoizedData
-          .slice()
           .sort(
             (a, b) =>
               b.rating - a.rating &&

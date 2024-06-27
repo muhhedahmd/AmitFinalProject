@@ -99,7 +99,10 @@ const Header = () => {
   const [CatagoryCollapse, setCatagoryCollapse] = useState(false);
 
   return (
-    <StyledHeader position="static">
+    <StyledHeader position="fixed" sx={{
+      width:"100%",
+      zIndex: 100,
+    }}>
       <CssBaseline />
       {isSm ? (
         <StyledToolBar>
@@ -214,9 +217,9 @@ const Header = () => {
                           color: grey[700],
                         }}
                       >
-                        <Link to={PATHS.SingleCatagory + "/" + item}>
-                          {item.split("-").join(" ")}
-                        </Link>
+                        <Link to={PATHS.SingleCatagory + "/" + item.name.split(" ").join("-")}>
+  {item.name}
+            </Link> 
                       </Typography>
                     </ListItem>
                   );
@@ -807,13 +810,13 @@ const Header = () => {
                 return (
                   <ListItem>
                     <Link
-                      to={PATHS.SingleCatagory + "/" + item}
+                      to={PATHS.SingleCatagory + "/" + item.name.split(" ").join("-")}
                       style={{
                         textDecoration: "none",
                         color: "inherit",
                       }}
                     >
-                      {item}
+                      {item.name}
                     </Link>
                   </ListItem>
                 );

@@ -7,7 +7,7 @@ export const StyledHeader = styled(AppBar)(({theme})=>{
     return {
         backgroundColor:"white",
         zIndex:"5",
-        position:"sticky",
+        position:"fixed",
         top:"0",
         boxShadow:"1px 1px 1px #ddd",
         'a':{

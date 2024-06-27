@@ -24,8 +24,8 @@ import { StyledHeader } from "../Header/Style";
 import { pink } from "@mui/material/colors";
 import axios from "axios";
 const Data = {
-  UserName: "kminchelle",
-  passwoard: "0lelplR",
+  username: 'emilys',
+  password: 'emilyspass',
 };
 
 const Login = () => {
@@ -33,22 +33,24 @@ const Login = () => {
   const { login, setUser } = useAuth();
 
   const [inputs, setinputs] = useState({
-    UserName: "",
-    passwoard: "",
+    username: "",
+    password: "",
     checkState: false,
   });
 
   const schema = yup.object().shape({
-    UserName: yup.string().required(""),
-    passwoard: yup.string().max(16).min(6).required(""),
+    username: yup.string().required(""),
+    password: yup.string().max(16).min(6).required(""),
   });
+
+
 
   const handleSubmit = (e) => {
     schema
       .validate(
         {
-          UserName: inputs.UserName,
-          passwoard: inputs.passwoard,
+          username: inputs.username,
+          password: inputs.password,
         },
         { abortEarly: false }
       )
@@ -57,8 +59,8 @@ const Login = () => {
           .post(
             "https://dummyjson.com/auth/login",
             {
-              username: inputs.UserName,
-              password: inputs.passwoard,
+              username: inputs.username,
+              password: inputs.password,
             },
             {
               headers: { "Content-Type": "application/json" },
@@ -105,6 +107,7 @@ const Login = () => {
     setinputs({
       ...Data,
     });
+    console.log(inputs)
   };
 
   return (
@@ -206,7 +209,7 @@ const Login = () => {
               name="UserName"
               type="text"
               onChange={(e) => handleChange(e)}
-              value={inputs.UserName}
+              value={inputs.username}
               placeholder="Enter your UserName...."
             />
           </FormControl>
@@ -222,7 +225,7 @@ const Login = () => {
               name="passwoard"
               type="password"
               onChange={(e) => handleChange(e)}
-              value={inputs.passwoard}
+              value={inputs.password}
               placeholder="Enter your passwoard"
             />
           </FormControl>

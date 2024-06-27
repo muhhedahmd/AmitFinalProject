@@ -71,8 +71,10 @@ export default function PoperUser() {
               p: 1,  }}>
               <Box
               sx={{
+                boxShadow:"2px 5px 10px #dedede",
+                width:"16rem",
                 padding: "1rem .5rem",
-    left: "-9rem",
+    left: "-13rem",
                 position:"absolute",
   display:"flex",
   flexDirection:"column",
@@ -109,7 +111,7 @@ export default function PoperUser() {
               >
 
                     <Typography variant='caption' component={"div"}>
-                    Name: {user.firstName}  {user.lastName}</Typography>
+                    Name: {user.Name}</Typography>
                     <Typography variant='caption' component={"div"}>
                     Email: {user.email}  </Typography>
 

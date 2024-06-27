@@ -12,7 +12,6 @@ import {
   StyledProduct,
   StyledProductHolder,
 } from "../Products/Style";
-// import { PATHS } from "../PATHS";
 import { grey, pink } from "@mui/material/colors";
 import { useCart } from "../Contexts/CartContext";
 import { PATHS } from "../PATHS";
