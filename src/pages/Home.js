@@ -2,6 +2,7 @@ import React from 'react'
 import ProductsSection from '../component/Products'
 import Header from '../component/Header'
 import Footer from '../component/Footer'
+import Offers from '../component/Offers'
 
 
 const Home = () => {
@@ -15,7 +16,9 @@ const Home = () => {
     >
   <Header/>
 
-              {/* <Offers/> */}
+              <Offers
+
+              />
    
 
               <ProductsSection/>
